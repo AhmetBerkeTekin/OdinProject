@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let playerScore = 0, computerScore = 0
+    const getComputerChoice = () => {
+        let index = Math.floor(Math.random() * 3) + 1;
+        var choice;
+        if(index == 1)
+        {
+            choice = "rock"
+        }
+        else if (index == 2){
+            choice == "paper"
+        }
+        else{
+            choice == "scissors"
+        }
+        return choice
+    };
+    const getHumanChoice = () => {
+        isSelected = true
+        var choice
+        while(isSelected){
+            choice = prompt("Select one of these: rock | paper | scissors")
+            if (choice === "rock" || choice === "paper" || choice === "scissors") {
+                console.log(choice);
+                isSelected = false
+            } else {
+                alert("Hatalı seçim");
+            }
+        }
+        return choice
+    };
+    function playRound(humanChoice, computerChoice) {
+        if(humanChoice == "rock"){
+            if(computerChoice == "rock"){
+                console.log("TIE")
+            }
+            else if(computerChoice == "paper"){
+                console.log("You lose, paper beats rock")
+            }
+            else{
+                console.log("You win, rock beats paper")
+            }
+        }
+        else if(humanChoice == "paper"){
+            if(computerChoice == "rock"){
+                console.log("You win, paper beats rock")
+            }
+            else if(computerChoice == "paper"){
+                console.log("TIE")
+            }
+            else{
+                console.log("You lose, scissors beats paper")
+            }
+        }
+        else{//scissors
+            if(computerChoice == "rock"){
+                console.log("You win, paper beats rock")
+            }
+            else if(computerChoice == "paper"){
+                console.log("TIE")
+            }
+            else{
+                console.log("You lose, scissors beats paper")
+            }
+        }
+    }
+
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection)
+</script>
