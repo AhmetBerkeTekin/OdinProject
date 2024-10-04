@@ -8,14 +8,21 @@
 </head>
 <body>
     <div>
-        <button>Define Number</button>
+        <button onclick="generateDivs()">Define Number</button>
     </div>
     <div class="container">
 
     </div>
+    <button onclick="clearDrawings()">Clear</button>
 </body>
 </html>
 <script>
+    function clearDrawings(){
+        const divs = document.querySelectorAll("div.container>div")
+        for(let i = 0; i < divs.length; i++){
+            divs[i].style.backgroundColor = "aliceblue"
+        }
+    }
     function getRandomColor(){
         var color = {
             red: Math.floor(Math.random() * 256),
@@ -24,20 +31,26 @@
         }
         return `rgb(${color.red}, ${color.green}, ${color.blue})`
     }
-
-    const button = document.querySelector("button")
-    button.addEventListener("click", ()=>{
-        const number = prompt("Enter valid number")
-        console.log(number)
-    })
-    
-    const container = document.querySelector("div.container")
-    for(let i = 0; i < 256; i++){
-        var color = getRandomColor()
+    function generateDivs(){
+        if(document.querySelectorAll("div.container>div").length > 0){
+            const allDivs = document.querySelectorAll("div.container>div");
+            allDivs.forEach(div => {
+            div.remove(); // Her bir div elementini kaldırıyoruz
+        });
+        }
+        numberOfDivsInRow = prompt("Enter valid value between 4 and 100")
+        const divWidth = (MAX_WIDTH - ((numberOfDivsInRow - 1) * GAP)) / numberOfDivsInRow
+        console.log(divWidth)
+        for(let i = 0; i < numberOfDivsInRow * numberOfDivsInRow; i++){
         let squareDiv = document.createElement("div")
         squareDiv.id = i
         squareDiv.classList.add("square")
-        squareDiv.style.backgroundColor = color
+
+        squareDiv.style.width = `${divWidth}px`
+        squareDiv.style.height = `${divWidth}px`
+
+        console.log(squareDiv.style.width)
+
         squareDiv.addEventListener("mouseenter", ()=>{
             var color = getRandomColor()
             squareDiv.style.backgroundColor = color
@@ -46,5 +59,12 @@
             
         })
         container.appendChild(squareDiv)
+        }
     }
+
+    var numberOfDivsInRow
+    const MAX_WIDTH = 720
+    const GAP = 5
+    const container = document.querySelector("div.container")
+       
 </script>
