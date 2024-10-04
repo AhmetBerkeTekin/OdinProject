@@ -1,0 +1,13 @@
+.square{
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+.container{
+  display: flex;
+  gap: 5px;
+  margin:auto;
+  margin-top: 100px;
+  flex-wrap: wrap;
+  max-width: 335px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button>Define Number</button>
+    </div>
+    <div class="container">
+
+    </div>
+</body>
+</html>
+<script>
+    function getRandomColor(){
+        var color = {
+            red: Math.floor(Math.random() * 256),
+            green: Math.floor(Math.random() * 256),
+            blue: Math.floor(Math.random() * 256)
+        }
+        return `rgb(${color.red}, ${color.green}, ${color.blue})`
+    }
+
+    const button = document.querySelector("button")
+    button.addEventListener("click", ()=>{
+        const number = prompt("Enter valid number")
+        console.log(number)
+    })
+    
+    const container = document.querySelector("div.container")
+    for(let i = 0; i < 256; i++){
+        var color = getRandomColor()
+        let squareDiv = document.createElement("div")
+        squareDiv.id = i
+        squareDiv.classList.add("square")
+        squareDiv.style.backgroundColor = color
+        squareDiv.addEventListener("mouseenter", ()=>{
+            var color = getRandomColor()
+            squareDiv.style.backgroundColor = color
+        })
+        squareDiv.addEventListener("mouseleave", ()=>{
+            
+        })
+        container.appendChild(squareDiv)
+    }
+</script>
