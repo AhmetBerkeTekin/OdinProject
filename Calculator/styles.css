@@ -1,0 +1,48 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh;           
+    margin: 0;   
+}
+.calculator{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    border-color: rgb(0, 0, 0);
+    border-width: 4px;
+    border-style: solid;
+    padding: 8px;
+}
+.screen{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: rgb(163, 179, 195);
+    width: 320px;   /* Screen genişliği */
+    height: 100px;
+    margin-bottom: 5px;
+}
+.numbers{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 320px;   /* Numbers genişliği screen ile eşit */
+}
+.numbers div{
+    width: calc(25% - 3px); /* Her div, 75px yerine boşlukları hesaba katıyor */
+    height: 75px;
+    background-color: rgb(163, 179, 195);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: bold;
+}
+.display-number{
+    margin-right: 20px;
+    font-size: 50px;
+}

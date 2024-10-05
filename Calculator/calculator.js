@@ -53,5 +53,3 @@ const oparate = (operator, firstNumber, secondNumber) => {
             break;
     }
 }
-
-var firstNumber, secondNumber, operator

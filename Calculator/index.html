@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator">
-        <div class="screen"></div>
+        <div class="screen">
+            <p class="display-number">0</p>
+        </div>
         <div class="numbers">
             <div>CE</div>
             <div>C</div>
@@ -32,6 +35,122 @@
             <div>=</div>
         </div>
     </div>
-    <script src="calculator.js"></script>
+    <script type="module" src="calculator.js"></script>
 </body>
 </html>
+<script>
+    const add = function(a, b) {
+	    return a + b
+    };
+
+    const subtract = function(a, b) {
+	    return a - b
+    };
+    const multiply = function(a, b) {
+        return a * b
+    };
+
+    const divide = function(a, b){
+        return a / b 
+    }
+    var firstNumber, secondNumber, operator, isOperatorSelected = false, result = 0,
+    calculated = false
+
+    const display = document.querySelector(".display-number")
+    const buttons = document.querySelectorAll(".numbers div")
+    console.log(buttons)
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            if(button.innerHTML.includes("fa-times-circle")) {
+                if(display.textContent.length > 1)
+                {
+                    display.textContent = display.textContent.slice(0, -1);
+                    return
+                }
+                else{
+                    display.textContent = "0"
+                    return
+                }
+                    
+            }
+            if(button.textContent == "C" || button.textContent == "CE"){
+                display.textContent = "0"
+                return
+            }
+            if(!isNaN(button.textContent)){
+                if(display.textContent == "0" || calculated)
+                    display.textContent = ""
+                    calculated = false
+                if(isOperatorSelected){
+                    display.textContent += button.textContent
+                }
+                if(!isOperatorSelected){
+                    display.textContent += button.textContent
+                }  
+            }
+            else{
+                switch (button.textContent) {
+                    case "+":
+                        operator = button.textContent
+                        if(!isOperatorSelected){
+                            firstNumber = parseInt(display.textContent)
+                            isOperatorSelected = true
+                            display.textContent = ""
+                        }
+                        break;
+                    case "-":
+                        operator = button.textContent
+                        if(!isOperatorSelected){
+                            firstNumber = parseInt(display.textContent)
+                            isOperatorSelected = true
+                            display.textContent = ""
+                        }
+                        break;
+                    case "/":
+                        operator = button.textContent
+                        if(!isOperatorSelected){
+                            firstNumber = parseInt(display.textContent)
+                            isOperatorSelected = true
+                            display.textContent = ""
+                        }
+                        break;
+                    case "*":
+                        operator = button.textContent
+                        if(!isOperatorSelected){
+                            firstNumber = parseInt(display.textContent)
+                            isOperatorSelected = true
+                            display.textContent = ""
+                        }
+                        break;
+                    case "=":
+                    secondNumber = parseInt(display.textContent)
+                    isOperatorSelected = false
+                    calculated = true
+                    switch (operator) {
+                        case "+":
+                            result = add(firstNumber, secondNumber)
+                            display.textContent = result.toString()
+                            break;
+                        case "-":
+                            result = subtract(firstNumber, secondNumber)
+                            display.textContent = result.toString()
+                            break; 
+                        case "/":
+                            result = divide(firstNumber, secondNumber)
+                            display.textContent = result.toString()
+                            break;
+                        case "*":
+                            result = multiply(firstNumber, secondNumber)
+                            display.textContent = result.toString()
+                            break;
+                        default:
+                            break;
+                    }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        })
+    })
+</script>
